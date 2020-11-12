@@ -1,6 +1,6 @@
 // Player
 let playerInput = prompt ('Wybierz swój ruch: 1 - kamień, 2 - papier, 3 - nożyce');
-let playerMove = 'nieznany ruch';
+let playerMove = 'Nieznany ruch';
 
 if (playerInput == 1) {playerMove = 'kamień';
 } else if (playerInput == 2) {playerMove = 'papier';
@@ -12,7 +12,7 @@ printMessage ('Gracz wybrał ' + playerMove);
 
 // Computer
 let randomNumber = Math.floor(Math.random() * 3 + 1);
-let computerMove = 'nieznany ruch';
+let computerMove = 'Nieznany ruch';
 
 if (randomNumber == 1) {computerMove = 'kamień';
 } else if (randomNumber == 2) {computerMove = 'papier';
@@ -25,8 +25,16 @@ printMessage ('Wylosowana zagrywka to ' + computerMove);
 // Score
 let score = 'Nieznany zwycięzca';
 
-if (playerInput > randomNumber) {score = 'czlowiek wygral';
-} else {score = 'dupa';
-}
+if (computerMove == 'kamień' && playerMove == 'kamień') {score = 'Remis';
+} else if (computerMove == 'kamień' &&  playerMove == 'papier') { score = 'Wygrywasz :)';
+} else if (computerMove == 'kamień' && playerMove == 'nożyce') {score = 'Przegrywasz :(';
+} else if (computerMove == 'papier' && playerMove == 'kamień') {score = 'Przegrywasz :(';
+} else if (computerMove == 'papier' && playerMove == 'papier') {score = 'Remis';
+} else if (computerMove == 'papier' && playerMove == 'nożyce') {score = 'Wygrywasz :)';
+} else if (computerMove == 'nożyce' && playerMove == 'kamień') {score = 'Wygrywasz :)';
+} else if (computerMove == 'nożyce' && playerMove == 'papier') {score = 'Przegrywasz :(';
+} else if (computerMove == 'nożyce' && playerMove == 'nożyce') {score = 'Remis';
+} else {score = 'Nieznany zwycięzca';
+} 
 
-printMessage ('Wynik to ' + score);
+printMessage (score);
