@@ -1,0 +1,9 @@
+button {
+  padding: 10px;
+  background-color: aqua;
+}
+
+button:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
