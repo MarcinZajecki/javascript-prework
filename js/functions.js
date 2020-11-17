@@ -7,3 +7,10 @@ function printMessage(msg){
 function clearMessages(){
 	document.getElementById('messages').innerHTML = '';
 }
+
+const printScore = function (msg){
+	let div = document.createElement('div');
+	div.innerHTML = msg;
+	document.getElementById('result').appendChild(div);
+}
+
