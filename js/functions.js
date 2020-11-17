@@ -8,9 +8,9 @@ function clearMessages(){
 	document.getElementById('messages').innerHTML = '';
 }
 
-const printScore = function (msg){
-	let div = document.createElement('div');
-	div.innerHTML = msg;
-	document.getElementById('result').appendChild(div);
+function printScore(msg){
+	let div1 = document.createElement('div');
+	div1.innerHTML = msg;
+	document.getElementById('result').appendChild(div1);
 }
 
