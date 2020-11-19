@@ -2,6 +2,7 @@
 // Global variables
 let playerPoints = 0,
     computerPoints = 0,
+    roundNumber = 0,
     score;
 
 //Info
@@ -39,7 +40,9 @@ const getMoveName = function (argMoveId) {
     } else {score = 'Nieznany zwycięzca';
     }
 }
+
 // Start game
+
 const playGame = function (playerInput) {
     clearMessages()
     // Player's choice
@@ -54,44 +57,47 @@ const playGame = function (playerInput) {
     // Score 
     displayResult(computerMove, playerMove);
     printMessage (score);
+    console.log ('Wynik: ' + score);
+    //Number of rounds & conditions
+    roundNumber++;
+    if (roundNumber < 6) {
+        if (score == 'Wygrywasz :)') {
+            playerPoints++;
+            printRoundResult('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+        } else if (score == 'Przegrywasz :(') {
+            computerPoints++;
+            printRoundResult('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+        } 
+    } else if (roundNumber == 6) {
+        printRoundResult('Koniec gry');
+        clearMessages();
+        if (playerPoints > computerPoints) {
+            printFinalResult('Wygrał człowiek');
+        } else if (computerPoints = playerPoints) {
+            printFinalResult('Wygrała maszyna');
+        } else {
+            printFinalResult('Wynik gry to remis');
+        }
+    } else {
+        clearMessages();
+    }
 }
 
 // Buttons - player's choice
+
 const buttonRock = document.getElementById('button_rock'),
     buttonPaper = document.getElementById('button_paper'),
     buttonScissors = document.getElementById('button_scissors');
 
-    buttonRock.addEventListener ('click', function() {
-    playGame (1),
-    console.log ('Wynik: ' + score);
-    if (score == 'Wygrywasz :)') {
-        playerPoints++;
-    } else if (score == 'Przegrywasz :(') {
-        computerPoints++;
-    }
-    printScore('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+buttonRock.addEventListener ('click', function() {
+    playGame (1)
+    console.log(roundNumber, ' Numer rundy');
 });
 
 buttonPaper.addEventListener ('click', function() {
-    playGame (2),
-    console.log ('Wynik: ' + score);
-    if (score == 'Wygrywasz :)') {
-        playerPoints++;
-    } else if (score == 'Przegrywasz :(') {
-        computerPoints++;
-    }
-    printScore('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+    playGame (2)
 });
 
 buttonScissors.addEventListener ('click', function() {
-    playGame (3),
-    console.log ('Wynik: ' + score);
-    if (score == 'Wygrywasz :)') {
-        playerPoints++;
-    } else if (score == 'Przegrywasz :(') {
-        computerPoints++;
-    }
-    console.log('punkty gracza: ', playerPoints);
-    printScore('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+    playGame (3)
 });
-
