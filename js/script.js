@@ -2,6 +2,7 @@
 // Global variables
 let playerPoints = 0,
     computerPoints = 0,
+    roundNumber = 0,
     score;
 
 //Info
@@ -39,7 +40,9 @@ const getMoveName = function (argMoveId) {
     } else {score = 'Nieznany zwycięzca';
     }
 }
+
 // Start game
+
 const playGame = function (playerInput) {
     clearMessages()
     // Player's choice
@@ -54,22 +57,31 @@ const playGame = function (playerInput) {
     // Score 
     displayResult(computerMove, playerMove);
     printMessage (score);
+    roundNumber++;
 }
 
 // Buttons - player's choice
+
 const buttonRock = document.getElementById('button_rock'),
     buttonPaper = document.getElementById('button_paper'),
     buttonScissors = document.getElementById('button_scissors');
 
-    buttonRock.addEventListener ('click', function() {
+buttonRock.addEventListener ('click', function() {
     playGame (1),
     console.log ('Wynik: ' + score);
-    if (score == 'Wygrywasz :)') {
-        playerPoints++;
-    } else if (score == 'Przegrywasz :(') {
-        computerPoints++;
+    if (roundNumber < 5) {
+        if (score == 'Wygrywasz :)') {
+            playerPoints++;
+            printResult('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+        } else if (score == 'Przegrywasz :(') {
+            computerPoints++;
+            printResult('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+        } 
+    } else {
+        printResult('Koniec gry');
     }
-    printScore('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+    
+    console.log('Numer rundy: ' + roundNumber)
 });
 
 buttonPaper.addEventListener ('click', function() {
@@ -80,7 +92,8 @@ buttonPaper.addEventListener ('click', function() {
     } else if (score == 'Przegrywasz :(') {
         computerPoints++;
     }
-    printScore('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+    printResult('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+    console.log( 'Numer rundy: ' + roundNumber)
 });
 
 buttonScissors.addEventListener ('click', function() {
@@ -92,6 +105,7 @@ buttonScissors.addEventListener ('click', function() {
         computerPoints++;
     }
     console.log('punkty gracza: ', playerPoints);
-    printScore('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+    printResult('Punkty gracza: ' + playerPoints + ' Punkty przeciwnika: ' + computerPoints);
+    console.log( 'Numer rundy: ' + roundNumber)
 });
 

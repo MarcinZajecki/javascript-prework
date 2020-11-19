@@ -8,9 +8,15 @@ function clearMessages(){
 	document.getElementById('messages').innerHTML = '';
 }
 
-function printScore(msg){
+function printResult(msg){
 	let div1 = document.createElement('div');
 	div1.innerHTML = msg;
 	document.getElementById('result').appendChild(div1);
+}
+
+function printGameOver(msg){
+	let div1 = document.createElement('div');
+	div1.innerHTML = msg;
+	document.getElementById('game_over').appendChild(div1);
 }
 
